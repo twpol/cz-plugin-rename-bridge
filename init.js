@@ -54,7 +54,7 @@ function _onmessage(e) {
                 const bridgeMessage = e.params[2].match(/^<(.*?)> ([^ ].*)$/);
                 if (bridgeMessage) {
                     e.bridgeUser = e.user;
-                    e.user = new CIRCUser(e.server, null, bridgeMessage[1]);
+                    e.user = new CIRCUser(e.server, null, removeColorCodes(bridgeMessage[1]));
                     e.params[2] = bridgeMessage[2];
                     client.display('RB ' + e.bridgeUser.unicodeName + ' --> ' + e.user.unicodeName);
                 }
