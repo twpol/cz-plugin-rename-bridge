@@ -47,7 +47,6 @@ function _onprefchanged() {
 plugin.onMessage =
 function _onmessage(e) {
     try {
-        // client.display('RB source=' + e.server.parent.getURL() + ' user=' + e.user.unicodeName + ' params.length=' + e.params.length + ' params[1]=' + e.params[1] + ' params[2]=' + e.params[2] + '');
         const bridges = plugin.bridges;
         for (const bridge of bridges) {
             if ((bridge.host === e.server.parent.unicodeName || (bridge.host === e.server.hostname && bridge.port === e.server.port)) && e.user.unicodeName === bridge.target) {
@@ -56,7 +55,6 @@ function _onmessage(e) {
                     e.bridgeUser = e.user;
                     e.user = new CIRCUser(e.server, null, removeColorCodes(bridgeMessage[1]));
                     e.params[2] = bridgeMessage[2];
-                    client.display('RB ' + e.bridgeUser.unicodeName + ' --> ' + e.user.unicodeName);
                 }
                 break;
             }
